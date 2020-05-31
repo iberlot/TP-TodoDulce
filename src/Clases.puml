@@ -1,0 +1,197 @@
+@startuml
+
+interface iBasica {
+	String toString()
+}
+
+class TodoDulce {
+	+{static}void main(String[] args)
+}
+
+abstract class Facturas {
+	#Calendar fechaEmision
+	#{static}int diasVto
+	#long numero
+	#ArrayList<Detalles> detalles
+	#{static}String nombreTienda
+	+{abstract}String toString()
+	+String retornarNumeroFactura()
+	+{abstract}float calcularTotal()
+	+void mostrarFactura()
+	+Calendar calcularVto()
+	+void mostrarDetalle()
+	+void registrar_pago()
+	+boolean tieneGolo(Golosinas golo)
+}
+
+class FacturasA {
+	+String toString()
+	+float calcularIVATotal()
+	+float calcularTotal()
+	+void mostrarDetalle()
+}
+
+class FacturasB {
+	-{static}int cantidadGenerada
+	+String toString()
+	+float calcularTotal()
+	+void mostrarDetalle()
+}
+
+class Detalles {
+	-float cantidad
+	-Golosinas producto
+}
+
+abstract class Golosinas {
+	#float precio
+	#int codigo
+	#String descripcion
+	#String[] sabores
+	+boolean listar_sabores()
+	+void eitar_sabor(int index)
+	+void add_sabor()
+}
+
+class GoloKilo {
+	-float descuento
+	+String toString()
+}
+
+class GoloPaquete {
+	-boolean oferta
+	+String toString()
+	+void addDeposito(Depositos depo)
+}
+
+class Pagos {
+	-Calendar fecha
+	-String formaPago
+	-int nroRecibo
+	-{static}int nroTransaccion
+	+String toString()
+	+void modificar_pago()
+	+void registrar_f_pago()
+	+void regis_pago()
+}
+
+class Clientes {
+	-long CUIT
+	-String razonSocial
+	-boolean responsableInscripto
+	+String toString()
+}
+
+class Domicilios  {
+	-String pais
+	-String provincia
+	-String ciudad
+	-int codigoPostal
+	-String calle
+	-int numero
+	-int piso
+	-String depto
+	+String toString()
+	+void nueva_direccion()
+	+void editar_domicilio()
+}
+
+class Depositos {
+	-String nombre
+	-boolean propio
+	+String toString()
+	+void nuevo_deposito()
+	+void modificarDeposito()
+}
+
+class Sucursales {
+	-int codigo
+	-long nroUltimaFactura
+	-{static}int codigoUltimaSucursal
+	+long nextNroFactura()
+	+String toString()
+}
+
+class Principal [[java:tododulce.Principal]] {
+	-ArrayList<Facturas> facturas
+	-ArrayList<Sucursales> sucursales
+	-ArrayList<Golosinas> golosinas
+	-ArrayList<Clientes> clientes
+	-ArrayList<Depositos> depositos
+	-long importeMinVto
+	+void imprimirMenu()
+	-void m_abm_depositos()
+	-void m_abm_sucursales()
+	-void m_abm_productos()
+	-void m_abm_facturas()
+	-void m_abm_clientes()
+	-int ver_deposito()
+	-int ver_sucursal()
+	-int ver_cliente()
+	-int ver_producto()
+	-int ver_factura()
+	-int buscar_deposito()
+	-int buscar_producto()
+	-int buscar_cliente()
+	-int buscar_sucursal()
+	-int buscar_factura()
+	-Depositos nuevo_deposito()
+	+Clientes nuevo_cliente()
+	-void nueva_sucursal()
+	-void nuevo_producto()
+	-void nueva_factura()
+	-void editar_sucursal()
+	-void editar_cliente()
+	-void editar_producto()
+	-void editar_factura()
+	-void pagar_facturas()
+	-boolean listar_golosinas()
+	-boolean listar_clientes()
+	-boolean listar_sucursales()
+	-boolean listar_depositos()
+	-boolean listar_facturas()
+	+boolean comprobar_cuit(long cuit)
+	+int[] buscarIdsFacVencidas()
+	-void golosinasNoVendidas(int tipoGolo, boolean totales, boolean completo)
+	+void mostrarFacturasVencidas(float montoMin, int tipoProd, boolean mostrarTodo, boolean inverso)
+	+void mostrarDatosPeriodo(int anio)
+	+void mostrarFacBuscGolo(String busque)
+	-void mostrarFacturasAsociadas(Clientes clientes2, int dias)
+}
+TodoDulce -- Principal
+
+Depositos *-- "1" Domicilios : domicilio
+
+Detalles o-- "1" Golosinas : producto
+
+Sucursales *-- "1" Domicilios : direccion
+
+Facturas o-- "1" Sucursales : sucursal
+Facturas o-- "1" Clientes : cliente
+Facturas *-- "1" Pagos : pago
+Facturas <|-- FacturasA
+Facturas <|-- FacturasB
+Facturas *-- Detalles
+
+Golosinas <|-- GoloKilo
+Golosinas <|-- GoloPaquete
+
+GoloPaquete o-- "*" Depositos : deposito
+
+iBasica <|.. Depositos
+iBasica <|.. Detalles
+iBasica <|.. Domicilios
+iBasica <|.. Facturas
+iBasica <|.. Clientes
+iBasica <|.. Pagos
+iBasica <|.. Sucursales
+iBasica <|.. Golosinas
+
+
+
+Principal *-- Depositos
+Principal *-- Facturas
+Principal *-- Clientes
+Principal *-- Sucursales
+Principal *-- Golosinas
+@enduml
