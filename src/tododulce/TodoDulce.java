@@ -8,12 +8,13 @@ package tododulce;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
-
 import funciones.Funciones;
+
+//import funciones.Funciones;
 
 /**
  *
- * @author IVANB
+ * @author IVANB y FRAND
  */
 public class TodoDulce {
 
@@ -48,7 +49,7 @@ public class TodoDulce {
 					new Domicilios("Argentina", "Buenos Aires", "Mariano Acosta", 1724, "Hugo del Carril", 1024));
 			base.getDepositos().add(new Depositos("Usalizate", false));
 			base.getDepositos().get(base.getDepositos().size() - 1)
-					.setDomicilio(new Domicilios("Argentina", "CABA", "CABA", 1030, "Rodriguez Peña", 714, 3, "0"));
+					.setDomicilio(new Domicilios("Argentina", "CABA", "CABA", 1030, "Rodriguez Peï¿½a", 714, 3, "0"));
 
 			base.getSucursales().add(new Sucursales());
 			base.getSucursales().get(base.getSucursales().size() - 1)
