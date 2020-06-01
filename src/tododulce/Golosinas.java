@@ -2,21 +2,18 @@ package tododulce;
 
 import funciones.Funciones;
 
-public abstract class Golosinas implements iBasica {
+public class Golosinas implements Comparable<Golosinas>{
 
-	protected float precio;
+	private float precio;
 
-	protected int codigo;
+	private int codigo;
 
-	protected String descripcion;
+	private String descripcion;
 
-	protected String[] sabores;
+	private String[] sabores = new String[3];
 
-	/**
-	 *
-	 */
+	
 	public Golosinas() {
-		this.sabores = new String[20];
 	}
 
 	/**
@@ -26,7 +23,6 @@ public abstract class Golosinas implements iBasica {
 	 * @param sabores
 	 */
 	public Golosinas(float precio, int codigo, String descripcion, String[] sabores) {
-		super();
 		this.precio = precio;
 		this.codigo = codigo;
 		this.descripcion = descripcion;
@@ -127,4 +123,19 @@ public abstract class Golosinas implements iBasica {
 		}
 
 	}
+
+	@Override
+	public int compareTo(Golosinas o) {
+		if(precio == o.getPrecio()) {
+			return 0;
+		}
+		if(precio < o.getPrecio()) {
+			return 1;
+		}
+		else {
+			return -1;
+		}
+	}
+
+
 }
