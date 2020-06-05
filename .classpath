@@ -5,5 +5,6 @@
 	<classpathentry kind="lib" path="jarsExt/funciones.jar"/>
 	<classpathentry kind="lib" path="jarsExt/json-20190722.jar"/>
 	<classpathentry kind="lib" path="jarsExt/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/TP-Peliseri/jarsExt/funciones.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
