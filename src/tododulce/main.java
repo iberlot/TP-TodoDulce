@@ -16,19 +16,23 @@ public class main {
 		
 		puntoA();
 		puntoB();
-		puntoC();
+		System.out.println("Escriba el indice que desea borrar de la lista de las golosinas: ");
+		int i = Entero();
+		puntoC(i);
+		puntoD();
 		puntoE();
-		puntoF(argsInt);
+		puntoF(args, argsInt, argsInt);
 		puntoG(argsInt);
 		puntoH();
 		puntoI(goloList);
-		puntoJ(args);
+		int pos1=Integer.parseInt(args[args.length]);
+		int pos2=Integer.parseInt(args[(args.length)-1]);
+		puntoJ(pos1, pos2, argsInt);
 		
 		daoClass.escribirSalida();
 	}
-	
+
 	private static void puntoA() {
-		// TODO Auto-generated method stub
 		Random numerosRandom = new Random();
 		int dim = 10;
 		while(dim != 0) {
@@ -67,12 +71,12 @@ public class main {
 		System.out.println(valorMax);
 	}
 	
-	private static void puntoC() throws ExceptionsPropia {
-		System.out.println("Escriba el indice que desea borrar de la lista de las golosinas: ");
-		int i = leer.nextInt();
+	private static void puntoC(int i) throws ExceptionsPropia {
 		removerItem(i);
 		System.out.println("Objeto removido: " + i);
-		//Punto D
+	}
+	
+	private static void puntoD() {
 		System.out.println("Lista ordenada de forma descendente segun el precio: ");
 		Collections.sort(goloList);
 		for(Golosinas gol: goloList) {
@@ -86,8 +90,7 @@ public class main {
 		System.out.println(disjoint);
 	}
 	
-	private static void puntoF(List<Integer> argsInt) {
-		// TODO Auto-generated method stub
+	private static void puntoF(String[] args, List<Integer> argsIntargs,List<Integer> argsInt) {
 		for (int z=0; z<args.length;z++) {
 			argsInt.add(Integer.parseInt(args[z]));
 		}
@@ -96,15 +99,13 @@ public class main {
 	}
 	
 	private static void puntoG(List<Integer> argsInt) {
-		// TODO Auto-generated method stub
 		for (int c=0;c<goloIntList.size();c++) {
 			goloIntList.add(new GoloInt(argsInt, goloList));
 		}
 	}
 	
-	private static void puntoJ(String[] args) {
-		int pos1=Integer.parseInt(args[args.length]);
-		int pos2=Integer.parseInt(args[(args.length)-1]);
+	private static void puntoJ(int pos1,int pos2,List<Integer> argsInt) {
+
 		int aux=0;
 		if (pos1<pos2) {
 			aux=pos2;
@@ -131,14 +132,45 @@ public class main {
 	}
 	
 	public static void puntoH () throws ExceptionsPropia {
-
 		int frec = Collections.frequency(goloIntList, 5);
 		System.out.println("El número 5 se repite "+frec+" veces.");
 	}
-	
 	public static void removerItem(int i) throws ExceptionsPropia {
 		goloList.remove(i);
 	}
 	
+	public static int Entero() {
+		int num=0;
+		Scanner leer = new Scanner(System.in);
+		while(leer.hasNextInt()==false || (num=leer.nextInt())<0) {
+			System.out.println("Error, ingrese nuevo dato");
+			leer.nextLine();
+		}
+		return num;
+	}
+	
+	public static double Double() {
+		double num=0;
+		Scanner leer = new Scanner(System.in);
+		while(leer.hasNextDouble()==false || (num=leer.nextDouble())<0) {
+			System.out.println("Error, ingrese nuevo dato");
+			leer.nextLine();
+		}
+		return num;
+	}
+	
+	public static boolean validar2x1() {
+		int i=0;
+		System.out.println("Ingrese \"1\" si el local es propio o \"2\" si no lo es: ");
+		while ((leer.hasNextInt()==false)||((i=leer.nextInt())<1)||(i>1)) {
+			System.out.println("Error. Ingrese \"1\" si el local es propio o \"2\" si no lo es: ");
+			leer.nextLine();
+		}
+		if (i==1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
