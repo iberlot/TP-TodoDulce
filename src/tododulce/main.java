@@ -32,15 +32,16 @@ public class main {
 		Random numerosRandom = new Random();
 		int dim = 10;
 		while(dim != 0) {
-		int num = numerosRandom.nextInt(10000);
-		listaNumerica.add(num);
-		dim--;
-		if(num <= 999) {
-			listaNumerica.remove(listaNumerica.size()-1);
-			dim++;
-		}
+			int num = numerosRandom.nextInt(10000);
+			listaNumerica.add(num);
+			dim--;
+			if(num <= 999) {
+				listaNumerica.remove(listaNumerica.size()-1);
+				dim++;
+			}
 		}
 		boolean continuar = true;
+		
 		while(continuar) {
 			System.out.println("Ingrese el precio de la golosina: ");
 			float precio = leer.nextFloat();
@@ -62,13 +63,11 @@ public class main {
 	}
 	
 	private static void puntoB() {
-		// TODO Auto-generated method stub
 		String valorMax = "El numero mayor es: " + Collections.max(listaNumerica);
 		System.out.println(valorMax);
 	}
 	
 	private static void puntoC() throws ExceptionsPropia {
-		// TODO Auto-generated method stub
 		System.out.println("Escriba el indice que desea borrar de la lista de las golosinas: ");
 		int i = leer.nextInt();
 		removerItem(i);
@@ -82,7 +81,6 @@ public class main {
 	}
 	
 	private static void puntoE() {
-		// TODO Auto-generated method stub
 		boolean dis = Collections.disjoint(goloList, goloList);
 		String disjoint = "Tiene valores repetidos: " + dis;
 		System.out.println(disjoint);
